@@ -1,49 +1,67 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
+import { View, Text, StatusBar, StyleSheet } from 'react-native';
+import { Button } from 'react-native-elements';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+const colors = {
+    blue: '#2196F3',
+    red: '#F44336',
+    yellow: '#FFFF00',
+    green: '#64DD17',
+    gray: '#EEEEEE'
+};
 
-type Props = {};
-export default class App extends Component<Props> {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
-      </View>
-    );
-  }
-}
+const colorAccent = colors.blue;
+
+const text = {
+    title: 'NotifApp',
+    subTitle: 'KemKominfo Internal Notification App',
+    introButtonText: 'Get Notified!'
+};
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+    container: {
+        paddingTop: 10,
+        paddingBottom: 10,
+    },
+    h1: {
+        color: colorAccent, 
+        fontSize: 50, 
+        fontWeight: '600',
+    }
 });
+
+export default class MainActivity extends Component {
+    render() {
+        return (
+            <View style={{ flex: 1 }}>
+                <StatusBar hidden />
+                <View
+                    style={[styles.container, {
+                        paddingRight: 10,
+                        paddingLeft: 10,
+                        flex: 4,
+                        justifyContent: 'center',
+                        alignItems: 'center'
+                    }]}
+                >
+                    <Text style={styles.h1}>{text.title}</Text>
+                    <Text>{text.subTitle}</Text>
+                </View>
+                <View
+                    style={[styles.container, {
+                        flex: 1,
+                        justifyContent: 'flex-end'
+                    }]}
+                >
+                    <Button 
+                        raised
+                        backgroundColor={colorAccent}
+                        title={text.introButtonText} 
+                    />
+                </View>
+            </View>
+        );
+    }
+}
+
+// AppRegistry.registerComponent('LetsReact', () => HelloWorldApp);
